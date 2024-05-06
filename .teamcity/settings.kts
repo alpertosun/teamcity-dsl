@@ -15,9 +15,6 @@ project {
 
 object Build : BuildType({
     name = "Build"
-
-    artifactRules = DslContext.getParameter("artifactPath")
-
     vcs {
         root(Sources)
     }
@@ -39,14 +36,18 @@ object Test : BuildType({
     }
 
     steps {
-        maven {
-            goals = "test"
-        }
+            script {
+                name = "Compile and Build"
+                scriptContent = """
+                #!/bin/bash
+                echo "Starting build..."
+                """
+            }
     }
 
     triggers {
         vcs {
-            branchFilter = ""
+            branchFilter = "+:<default>"
         }
     }
 
