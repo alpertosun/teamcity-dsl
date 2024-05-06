@@ -34,17 +34,11 @@ object Test : BuildType({
     vcs {
         root(Sources)
     }
-
     steps {
-            script {
-                name = "Compile and Build"
-                scriptContent = """
-                #!/bin/bash
-                echo "Starting build..."
-                """
-            }
+        script {
+            scriptContent = """echo "Hello world!""""
+        }
     }
-
     triggers {
         vcs {
             branchFilter = "+:<default>"
